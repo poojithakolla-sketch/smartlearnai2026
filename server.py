@@ -13,6 +13,9 @@ import re
 load_dotenv()
 
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return "SmartLearn AI Backend is Running!"
 CORS(app)
 
 API_KEY = os.getenv("GEMINI_API_KEY")
