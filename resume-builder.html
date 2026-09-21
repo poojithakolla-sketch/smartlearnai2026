@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Builder | SmartLearn AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🧠</div>
+
+            <div>
+                <h2>SmartLearn AI</h2>
+                <span>Learning Intelligence</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                🏠 <span>Dashboard</span>
+            </a>
+
+            <a href="learning-dna.html">
+                🧬 <span>Learning DNA</span>
+            </a>
+
+            <a href="adaptive-quiz.html">
+                📝 <span>Adaptive Quiz</span>
+            </a>
+
+            <a href="skill-gap.html">
+                🎯 <span>Skill Gap</span>
+            </a>
+
+            <a href="analytics.html">
+                📊 <span>Analytics</span>
+            </a>
+
+            <a href="ai-assistant.html">
+                🤖 <span>AI Assistant</span>
+            </a>
+
+            <a href="resource-finder.html">
+                📚 <span>Resource Finder</span>
+            </a>
+
+            <a href="study-planner.html">
+                📅 <span>Study Planner</span>
+            </a>
+
+            <a href="resume-builder.html" class="active">
+                📄 <span>Resume Builder</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button onclick="logoutUser()" class="logout-btn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>AI Resume Builder 📄</h1>
+
+                <p>
+                    Build a professional student resume using your
+                    education, skills, projects and achievements.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- RESUME FORM -->
+        <section class="resume-builder-card">
+
+            <h2>Build Your Resume</h2>
+
+            <p class="resume-subtitle">
+                Enter your details. SmartLearn AI will organize them
+                into a professional resume.
+            </p>
+
+
+            <!-- PERSONAL DETAILS -->
+            <div class="resume-section">
+
+                <h3>👤 Personal Details</h3>
+
+                <div class="resume-grid">
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="resumeName"
+                            placeholder="Your full name"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="resumeEmail"
+                            placeholder="your@email.com"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumePhone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="resumePhone"
+                            placeholder="Phone number"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeLocation">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="resumeLocation"
+                            placeholder="City, State"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUME TYPE -->
+            <div class="resume-section">
+
+                <h3>🎯 Resume Type</h3>
+
+                <div class="resume-input-group">
+
+                    <select id="resumeType">
+
+                        <option value="Student">
+                            Student Resume
+                        </option>
+
+                        <option value="Developer">
+                            Software Developer
+                        </option>
+
+                        <option value="AI/ML">
+                            AI / ML
+                        </option>
+
+                        <option value="Data Science">
+                            Data Science
+                        </option>
+
+                        <option value="General">
+                            General Resume
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+            <div class="resume-section">
+
+                <h3>🎓 Education</h3>
+
+                <div class="resume-input-group">
+
+                    <label for="resumeEducation">
+                        Education Details
+                    </label>
+
+                    <textarea
+                        id="resumeEducation"
+                        rows="4"
+                        placeholder="Example:
+B.Tech in Artificial Intelligence & Machine Learning
+Aditya University
+2025 - 2029"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+            <div class="resume-section">
+
+                <h3>💻 Skills</h3>
+
+                <div class="resume-input-group">
+
+                    <label for="resumeSkills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="resumeSkills"
+                        rows="3"
+                        placeholder="Example:
+C, Python, SQL, HTML, CSS, JavaScript"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+            <div class="resume-section">
+
+                <h3>🚀 Projects</h3>
+
+                <div class="resume-input-group">
+
+                    <label for="resumeProjects">
+                        Projects
+                    </label>
+
+                    <textarea
+                        id="resumeProjects"
+                        rows="5"
+                        placeholder="Example:
+SmartLearn AI
+AI-powered personalized learning platform
+
+Bank Management System
+C-based banking application"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- CERTIFICATIONS -->
+            <div class="resume-section">
+
+                <h3>🏆 Certifications & Achievements</h3>
+
+                <div class="resume-input-group">
+
+                    <textarea
+                        id="resumeAchievements"
+                        rows="4"
+                        placeholder="Example:
+Python Certification
+Hackathon Participation
+Coding Competition"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- CODING PROFILES -->
+            <div class="resume-section">
+
+                <h3>🔗 Coding & Professional Profiles</h3>
+
+                <div class="resume-grid">
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeGithub">
+                            GitHub
+                        </label>
+
+                        <input
+                            type="url"
+                            id="resumeGithub"
+                            placeholder="https://github.com/username"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeLinkedin">
+                            LinkedIn
+                        </label>
+
+                        <input
+                            type="url"
+                            id="resumeLinkedin"
+                            placeholder="https://linkedin.com/in/username"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeLeetcode">
+                            LeetCode
+                        </label>
+
+                        <input
+                            type="url"
+                            id="resumeLeetcode"
+                            placeholder="https://leetcode.com/username"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-input-group">
+
+                        <label for="resumeCodechef">
+                            CodeChef
+                        </label>
+
+                        <input
+                            type="url"
+                            id="resumeCodechef"
+                            placeholder="https://codechef.com/users/username"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI INFO -->
+            <div class="resume-info-box">
+
+                <span>🤖</span>
+
+                <p>
+                    SmartLearn AI will improve the structure and
+                    wording of your resume without inventing
+                    qualifications or achievements.
+                </p>
+
+            </div>
+
+
+            <!-- BUTTON -->
+            <button
+                type="button"
+                id="buildResumeBtn"
+                class="primary-btn"
+            >
+                Build My Resume 🚀
+            </button>
+
+        </section>
+
+
+        <!-- LOADING -->
+        <section
+            id="resumeLoading"
+            class="resume-loading"
+            style="display: none;"
+        >
+
+            <div class="resume-loading-icon">
+                🤖
+            </div>
+
+            <h3>
+                Building your resume...
+            </h3>
+
+            <p>
+                SmartLearn AI is organizing your information.
+            </p>
+
+        </section>
+
+
+        <!-- RESUME RESULT -->
+        <section
+            id="resumeResult"
+            class="resume-result"
+            style="display: none;"
+        >
+
+            <div class="resume-result-header">
+
+                <h2>
+                    Your Resume 📄
+                </h2>
+
+                <button
+                    type="button"
+                    id="printResumeBtn"
+                    class="secondary-btn"
+                >
+                    🖨️ Print / Save PDF
+                </button>
+
+            </div>
+
+
+            <div
+                id="resumePreview"
+                class="resume-preview"
+            >
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

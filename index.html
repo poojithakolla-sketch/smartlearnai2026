@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartLearn AI - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-card">
+
+            <!-- Logo -->
+            <div class="brand">
+                <div class="brand-logo">S</div>
+                <div class="brand-name">SmartLearn AI</div>
+            </div>
+
+
+            <!-- Heading -->
+            <div class="login-header">
+
+                <span class="login-tag">
+                    AI-POWERED LEARNING
+                </span>
+
+                <h1>
+                    Learn Smarter.<br>
+                    Grow Faster. 🚀
+                </h1>
+
+                <p>
+                    Your personalized AI learning companion
+                    that understands how you learn.
+                </p>
+
+            </div>
+
+
+            <!-- Login Form -->
+            <form id="loginForm">
+
+                <!-- Email -->
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Error -->
+                <p id="loginError" class="login-error"></p>
+
+
+                <!-- Login Button -->
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    Login →
+                </button>
+
+            </form>
+
+
+            <!-- Demo Login -->
+            <div class="demo-section">
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="demo-btn"
+                    onclick="demoLogin()"
+                >
+                    🎯 Try Demo Account
+                </button>
+
+                <p class="demo-info">
+                    Demo: student@smartlearn.ai
+                </p>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="login-footer">
+
+                <p>
+                    SmartLearn AI
+                    <span>•</span>
+                    Personalized Learning Intelligence
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

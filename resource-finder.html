@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resource Finder | SmartLearn AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🧠</div>
+
+            <div>
+                <h2>SmartLearn AI</h2>
+                <span>Learning Intelligence</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                🏠 <span>Dashboard</span>
+            </a>
+
+            <a href="learning-dna.html">
+                🧬 <span>Learning DNA</span>
+            </a>
+
+            <a href="adaptive-quiz.html">
+                📝 <span>Adaptive Quiz</span>
+            </a>
+
+            <a href="skill-gap.html">
+                🎯 <span>Skill Gap</span>
+            </a>
+
+            <a href="analytics.html">
+                📊 <span>Analytics</span>
+            </a>
+
+            <a href="ai-assistant.html">
+                🤖 <span>AI Assistant</span>
+            </a>
+
+            <a href="resource-finder.html" class="active">
+                📚 <span>Resource Finder</span>
+            </a>
+
+            <a href="study-planner.html">
+                📅 <span>Study Planner</span>
+            </a>
+
+            <a href="resume-builder.html">
+                📄 <span>Resume Builder</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button onclick="logoutUser()" class="logout-btn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>AI Resource Finder 📚</h1>
+
+                <p>
+                    Find the right learning resources based on your
+                    subject, topic, difficulty and available time.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- RESOURCE SEARCH -->
+        <section class="resource-finder-card">
+
+            <h2>Find Learning Resources</h2>
+
+            <p class="resource-subtitle">
+                Tell SmartLearn AI what you want to learn.
+            </p>
+
+
+            <!-- SUBJECT -->
+            <div class="resource-input-group">
+
+                <label for="resourceSubject">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="resourceSubject"
+                    placeholder="Example: Python, C Programming, DBMS"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- TOPIC -->
+            <div class="resource-input-group">
+
+                <label for="resourceTopic">
+                    Topic
+                </label>
+
+                <input
+                    type="text"
+                    id="resourceTopic"
+                    placeholder="Example: Functions, Pointers, SQL Joins"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- DIFFICULTY -->
+            <div class="resource-input-group">
+
+                <label for="resourceDifficulty">
+                    Difficulty Level
+                </label>
+
+                <select id="resourceDifficulty">
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TIME -->
+            <div class="resource-input-group">
+
+                <label for="resourceTime">
+                    Available Study Time
+                </label>
+
+                <select id="resourceTime">
+
+                    <option value="15 minutes">
+                        15 minutes
+                    </option>
+
+                    <option value="30 minutes">
+                        30 minutes
+                    </option>
+
+                    <option value="1 hour">
+                        1 hour
+                    </option>
+
+                    <option value="2 hours">
+                        2 hours
+                    </option>
+
+                    <option value="3+ hours">
+                        3+ hours
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- RESOURCE TYPE -->
+            <div class="resource-input-group">
+
+                <label for="resourceType">
+                    Preferred Resource Type
+                </label>
+
+                <select id="resourceType">
+
+                    <option value="Any">
+                        Any
+                    </option>
+
+                    <option value="Video">
+                        🎥 Video
+                    </option>
+
+                    <option value="Documentation">
+                        📖 Documentation
+                    </option>
+
+                    <option value="Practice">
+                        💻 Practice
+                    </option>
+
+                    <option value="Course">
+                        🎓 Course
+                    </option>
+
+                    <option value="Notes">
+                        📝 Notes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- AI INFO -->
+            <div class="resource-info-box">
+
+                <span>🤖</span>
+
+                <p>
+                    SmartLearn AI will personalize the resources
+                    according to your learning needs.
+                </p>
+
+            </div>
+
+
+            <!-- BUTTON -->
+            <button
+                type="button"
+                id="findResourcesBtn"
+                class="primary-btn"
+            >
+                Find Resources 🔍
+            </button>
+
+        </section>
+
+
+        <!-- LOADING -->
+        <section
+            id="resourceLoading"
+            class="resource-loading"
+            style="display: none;"
+        >
+
+            <div class="loading-icon">
+                🤖
+            </div>
+
+            <h3>
+                Finding the best resources...
+            </h3>
+
+            <p>
+                SmartLearn AI is analyzing your requirements.
+            </p>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section
+            id="resourceResults"
+            class="resource-results"
+            style="display: none;"
+        >
+
+            <div class="resource-results-header">
+
+                <div>
+
+                    <h2>
+                        Recommended Resources 📚
+                    </h2>
+
+                    <p id="resourceSummary">
+                        Personalized resources for you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESOURCE CARDS -->
+            <div
+                id="resourceList"
+                class="resource-list"
+            >
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

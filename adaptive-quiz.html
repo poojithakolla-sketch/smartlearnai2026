@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Adaptive Quiz | SmartLearn AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🧠</div>
+
+            <div>
+                <h2>SmartLearn AI</h2>
+                <span>Learning Intelligence</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                🏠 <span>Dashboard</span>
+            </a>
+
+            <a href="learning-dna.html">
+                🧬 <span>Learning DNA</span>
+            </a>
+
+            <a href="adaptive-quiz.html" class="active">
+                📝 <span>Adaptive Quiz</span>
+            </a>
+
+            <a href="skill-gap.html">
+                🎯 <span>Skill Gap</span>
+            </a>
+
+            <a href="analytics.html">
+                📊 <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button onclick="logoutUser()" class="logout-btn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>Adaptive Quiz 📝</h1>
+
+                <p>
+                    Choose any subject and topic you want to learn.
+                    SmartLearn AI will generate a personalized quiz for you.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- QUIZ SETUP -->
+        <section id="quizSetup" class="quiz-setup-card">
+
+            <h2>Customize Your Quiz</h2>
+
+            <p class="quiz-subtitle">
+                Enter any subject and topic you want to practice.
+            </p>
+
+
+            <!-- SUBJECT -->
+            <div class="quiz-select-group">
+
+                <label for="quizSubject">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="quizSubject"
+                    placeholder="Example: Python, C Programming, DBMS"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- TOPIC -->
+            <div class="quiz-select-group">
+
+                <label for="quizTopic">
+                    Topic
+                </label>
+
+                <input
+                    type="text"
+                    id="quizTopic"
+                    placeholder="Example: Functions, Pointers, SQL Joins"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- INFO -->
+            <div class="quiz-info-box">
+
+                <span>🤖</span>
+
+                <p>
+                    SmartLearn AI will generate questions specifically
+                    for your selected subject and topic.
+                </p>
+
+            </div>
+
+
+            <!-- START BUTTON -->
+            <button
+                type="button"
+                id="startQuizBtn"
+                class="primary-btn"
+                disabled
+            >
+                Start Adaptive Quiz 🚀
+            </button>
+
+        </section>
+
+
+        <!-- QUIZ AREA -->
+        <section
+            id="quizArea"
+            class="quiz-area"
+            style="display: none;"
+        >
+
+            <!-- QUIZ TOP -->
+            <div class="quiz-top">
+
+                <div>
+
+                    <span id="quizSubjectName">
+                        Subject
+                    </span>
+
+                    <h2 id="quizTopicName">
+                        Topic
+                    </h2>
+
+                </div>
+
+                <div
+                    class="difficulty-badge"
+                    id="difficultyBadge"
+                >
+                    Easy
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="quiz-progress-container">
+
+                <div class="quiz-progress-info">
+
+                    <span id="questionNumber">
+                        Question 1 of 5
+                    </span>
+
+                    <span id="quizPercentage">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        id="quizProgress"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION -->
+            <div class="question-card">
+
+                <h2 id="questionText">
+                    Question will appear here.
+                </h2>
+
+
+                <div
+                    id="optionsContainer"
+                    class="quiz-options"
+                ></div>
+
+
+                <button
+                    type="button"
+                    id="nextQuestionBtn"
+                    class="primary-btn"
+                    disabled
+                >
+                    Next Question →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ RESULT -->
+        <section
+            id="quizResult"
+            class="quiz-result-card"
+            style="display: none;"
+        >
+
+            <div class="result-icon">
+                🎉
+            </div>
+
+            <h2>
+                Quiz Completed!
+            </h2>
+
+            <p id="resultMessage">
+                Here is your performance summary.
+            </p>
+
+
+            <!-- SCORE -->
+            <div class="result-score">
+
+                <span>
+                    Your Score
+                </span>
+
+                <strong id="finalScore">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <!-- STATS -->
+            <div class="result-stats">
+
+                <div>
+
+                    <span>
+                        Correct
+                    </span>
+
+                    <strong id="finalCorrect">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="finalTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Topic
+                    </span>
+
+                    <strong id="finalTopic">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div class="result-actions">
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="restartAdaptiveQuiz()"
+                >
+                    Try Again 🔄
+                </button>
+
+
+                <a
+                    href="skill-gap.html"
+                    class="secondary-btn"
+                >
+                    View Skill Gap 🎯
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MAIN JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>

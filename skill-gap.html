@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLearn AI - Skill Gap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">S</div>
+
+            <div>
+                <h2>SmartLearn</h2>
+                <span>AI</span>
+            </div>
+        </div>
+
+        <div class="sidebar-menu">
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='dashboard.html'">
+                🏠 Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='learning-dna.html'">
+                🧬 Learning DNA
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='adaptive-quiz.html'">
+                📝 Adaptive Quiz
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='analytics.html'">
+                📊 Performance
+            </button>
+
+            <button class="nav-item active">
+                🎯 Skill Gap
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='ai-assistant.html'">
+                🤖 AI Assistant
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='resource-finder.html'">
+                📚 Resource Finder
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='study-planner.html'">
+                📅 Study Planner
+            </button>
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='resume-builder.html'">
+                📄 Resume Builder
+            </button>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="nav-item logout-btn"
+                onclick="logoutUser()">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    SMARTLEARN AI
+                </p>
+
+                <h1>
+                    Skill Gap Analyzer
+                </h1>
+
+                <p>
+                    Tell SmartLearn where you are and where you want to go.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- GOAL SECTION -->
+
+        <section class="skill-card">
+
+            <h2>🎯 What is your goal?</h2>
+
+            <p class="section-description">
+                Your latest Adaptive Quiz can automatically suggest a goal.
+            </p>
+
+            <div class="form-group">
+
+                <label for="goalType">
+                    Goal Type
+                </label>
+
+                <select id="goalType">
+
+                    <option value="">
+                        Select Goal Type
+                    </option>
+
+                    <option value="career">
+                        Career
+                    </option>
+
+                    <option value="exam">
+                        Exam
+                    </option>
+
+                    <option value="project">
+                        Project
+                    </option>
+
+                    <option value="achievement">
+                        Achievement
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                id="goalTargetField"
+                style="display:none;">
+
+                <label for="goalTarget">
+                    Specific Target
+                </label>
+
+                <input
+                    type="text"
+                    id="goalTarget"
+                    placeholder="Example: AI Engineer">
+
+            </div>
+
+
+            <div
+                id="goalMessage"
+                class="form-message">
+            </div>
+
+        </section>
+
+
+        <!-- CURRENT SKILLS -->
+
+        <section class="skill-card">
+
+            <h2>🧠 What skills do you already have?</h2>
+
+            <p class="section-description">
+                Select the skills you already know.
+                If you have completed an Adaptive Quiz,
+                its evidence will also be used automatically.
+            </p>
+
+            <div
+                id="skillsCheckboxGrid"
+                class="skills-checkbox-grid">
+            </div>
+
+
+            <div class="custom-skill-box">
+
+                <input
+                    type="text"
+                    id="customSkillInput"
+                    placeholder="Add another skill">
+
+                <button
+                    id="addSkillBtn"
+                    class="primary-btn">
+                    + Add Skill
+                </button>
+
+            </div>
+
+
+            <div
+                id="customSkillsContainer"
+                class="selected-skills">
+            </div>
+
+        </section>
+
+
+        <!-- ANALYZE -->
+
+        <section class="skill-card analyze-card">
+
+            <button
+                id="analyzeGoalBtn"
+                class="primary-btn analyze-btn">
+
+                🔍 Analyze My Skill Gap
+
+            </button>
+
+            <p id="analysisStatus"></p>
+
+        </section>
+
+
+        <!-- RESULT -->
+
+        <section
+            id="skillAnalysisResult"
+            class="skill-analysis-result"
+            style="display:none;">
+
+            <div class="result-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AI ANALYSIS
+                    </p>
+
+                    <h2>
+                        Your Skill Gap
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- REQUIRED -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    📌 Required Skills
+                </h3>
+
+                <div
+                    id="requiredSkillsList"
+                    class="skill-tags">
+                </div>
+
+            </div>
+
+
+            <!-- EXISTING -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    ✅ Skills You Already Have
+                </h3>
+
+                <div
+                    id="existingSkills"
+                    class="skill-tags">
+                </div>
+
+            </div>
+
+
+            <!-- IMPROVE -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    🔄 Skills To Improve
+                </h3>
+
+                <div
+                    id="skillsToImprove"
+                    class="skill-tags">
+                </div>
+
+            </div>
+
+
+            <!-- MISSING -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    🚀 Missing Skills
+                </h3>
+
+                <div
+                    id="missingSkills"
+                    class="skill-tags">
+                </div>
+
+            </div>
+
+
+            <!-- LEARNING ORDER -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    📚 Recommended Learning Order
+                </h3>
+
+                <ol id="learningOrderList"></ol>
+
+            </div>
+
+
+            <!-- NEXT ACTION -->
+
+            <div class="next-action-box">
+
+                <h3>
+                    ⚡ Next Best Action
+                </h3>
+
+                <p id="skillNextAction"></p>
+
+            </div>
+
+
+            <!-- QUIZ EVIDENCE -->
+
+            <div class="analysis-box">
+
+                <h3>
+                    📝 Latest Quiz Evidence
+                </h3>
+
+                <div id="quizEvidence"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const goalType =
+        document.getElementById("goalType");
+
+    const goalTargetField =
+        document.getElementById("goalTargetField");
+
+    const goalTarget =
+        document.getElementById("goalTarget");
+
+    const goalMessage =
+        document.getElementById("goalMessage");
+
+    const skillsCheckboxGrid =
+        document.getElementById("skillsCheckboxGrid");
+
+    const customSkillInput =
+        document.getElementById("customSkillInput");
+
+    const addSkillBtn =
+        document.getElementById("addSkillBtn");
+
+    const customSkillsContainer =
+        document.getElementById("customSkillsContainer");
+
+    const analyzeGoalBtn =
+        document.getElementById("analyzeGoalBtn");
+
+    const analysisStatus =
+        document.getElementById("analysisStatus");
+
+    const skillAnalysisResult =
+        document.getElementById("skillAnalysisResult");
+
+
+    /* =====================================================
+       LOAD LATEST QUIZ EVIDENCE
+    ===================================================== */
+
+    let savedQuizEvidence = null;
+
+    try {
+
+        savedQuizEvidence =
+            JSON.parse(
+                localStorage.getItem(
+                    "skillGapQuizEvidence"
+                ) || "null"
+            );
+
+    } catch (error) {
+
+        console.warn(
+            "Invalid saved quiz evidence:",
+            error
+        );
+
+        savedQuizEvidence = null;
+    }
+
+
+    const quizEvidence =
+        savedQuizEvidence || {
+
+            subject:
+                localStorage.getItem(
+                    "lastQuizSubject"
+                ) || "",
+
+            topic:
+                localStorage.getItem(
+                    "lastQuizTopic"
+                ) || "",
+
+            score:
+                localStorage.getItem(
+                    "lastQuizScore"
+                ) || "",
+
+            correct:
+                localStorage.getItem(
+                    "lastQuizCorrect"
+                ) || "",
+
+            total:
+                localStorage.getItem(
+                    "lastQuizTotal"
+                ) || "",
+
+            difficulty:
+                localStorage.getItem(
+                    "lastQuizDifficulty"
+                ) || ""
+
+        };
+
+
+    /* =====================================================
+       AUTO SUGGEST GOAL FROM QUIZ
+    ===================================================== */
+
+    if (
+        quizEvidence &&
+        quizEvidence.subject
+    ) {
+
+        const subject =
+            quizEvidence.subject;
+
+        const topic =
+            quizEvidence.topic ||
+            "General";
+
+        const score =
+            quizEvidence.score ||
+            0;
+
+
+        goalType.value =
+            "achievement";
+
+
+        goalTargetField.style.display =
+            "block";
+
+
+        goalTarget.value =
+            `Improve ${subject} - ${topic}`;
+
+
+        goalMessage.textContent =
+            `📝 Suggested from your latest Adaptive Quiz: ${subject} - ${topic} (${score}%). You can change this goal if needed.`;
+
+    }
+
+
+    /* =====================================================
+       AVAILABLE SKILLS
+    ===================================================== */
+
+    const availableSkills = [
+
+        "C Programming",
+        "C++",
+        "Python",
+        "Java",
+        "JavaScript",
+
+        "HTML",
+        "CSS",
+        "React",
+
+        "Data Structures",
+        "Algorithms",
+
+        "SQL",
+        "Statistics",
+
+        "Machine Learning",
+        "Deep Learning",
+
+        "Data Analysis",
+        "Pandas",
+        "NumPy",
+
+        "Data Visualization",
+
+        "Git & GitHub",
+
+        "APIs",
+
+        "Docker",
+
+        "Linux",
+
+        "Networking",
+
+        "Cloud Computing",
+
+        "AWS",
+        "Azure",
+        "Google Cloud",
+
+        "Cybersecurity",
+
+        "Communication",
+        "Problem Solving",
+
+        "Project Development",
+
+        "Documentation",
+
+        "Research Skills",
+
+        "Leadership",
+
+        "Presentation Skills"
+
+    ];
+
+
+    /* =====================================================
+       CUSTOM SKILLS
+    ===================================================== */
+
+    let customSkills = [];
+
+
+    /* =====================================================
+       RENDER SKILLS
+    ===================================================== */
+
+    function renderSkills() {
+
+        skillsCheckboxGrid.innerHTML = "";
+
+
+        availableSkills.forEach(
+            function (skill, index) {
+
+                const label =
+                    document.createElement("label");
+
+
+                label.className =
+                    "skill-checkbox";
+
+
+                label.innerHTML = `
+
+                    <input
+                        type="checkbox"
+                        value="${skill}"
+                        id="skill_${index}"
+                    >
+
+                    <span>
+                        ${skill}
+                    </span>
+
+                `;
+
+
+                skillsCheckboxGrid.appendChild(
+                    label
+                );
+
+            }
+        );
+
+    }
+
+
+    renderSkills();
+
+
+    /* =====================================================
+       GOAL TYPE CHANGE
+    ===================================================== */
+
+    goalType.addEventListener(
+        "change",
+        function () {
+
+            if (goalType.value === "") {
+
+                goalTargetField.style.display =
+                    "none";
+
+                goalTarget.value = "";
+
+                return;
+            }
+
+
+            goalTargetField.style.display =
+                "block";
+
+
+            if (
+                goalType.value === "career"
+            ) {
+
+                goalTarget.placeholder =
+                    "Example: AI Engineer, Web Developer";
+
+            }
+
+            else if (
+                goalType.value === "exam"
+            ) {
+
+                goalTarget.placeholder =
+                    "Example: JEE Main, GATE, AP EAPCET";
+
+            }
+
+            else if (
+                goalType.value === "project"
+            ) {
+
+                goalTarget.placeholder =
+                    "Example: AI Chatbot, Smart Campus App";
+
+            }
+
+            else if (
+                goalType.value === "achievement"
+            ) {
+
+                goalTarget.placeholder =
+                    "Example: Build 3 ML Projects";
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       ADD CUSTOM SKILL
+    ===================================================== */
+
+    addSkillBtn.addEventListener(
+        "click",
+        addCustomSkill
+    );
+
+
+    customSkillInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                addCustomSkill();
+
+            }
+
+        }
+    );
+
+
+    function addCustomSkill() {
+
+        const skill =
+            customSkillInput.value.trim();
+
+
+        if (!skill) {
+            return;
+        }
+
+
+        if (
+            customSkills
+                .map(
+                    s => s.toLowerCase()
+                )
+                .includes(
+                    skill.toLowerCase()
+                )
+        ) {
+
+            customSkillInput.value = "";
+
+            return;
+        }
+
+
+        customSkills.push(skill);
+
+        customSkillInput.value = "";
+
+        renderCustomSkills();
+
+    }
+
+
+    function renderCustomSkills() {
+
+        customSkillsContainer.innerHTML =
+            "";
+
+
+        customSkills.forEach(
+            function (skill, index) {
+
+                const tag =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                tag.className =
+                    "skill-tag";
+
+
+                tag.innerHTML = `
+
+                    ${skill}
+
+                    <button
+                        type="button"
+                        onclick="removeCustomSkill(${index})">
+                        ×
+                    </button>
+
+                `;
+
+
+                customSkillsContainer.appendChild(
+                    tag
+                );
+
+            }
+        );
+
+    }
+
+
+    window.removeCustomSkill =
+        function (index) {
+
+            customSkills.splice(
+                index,
+                1
+            );
+
+            renderCustomSkills();
+
+        };
+
+
+    /* =====================================================
+       GET CURRENT SKILLS
+    ===================================================== */
+
+    function getCurrentSkills() {
+
+        const checkedSkills =
+            Array.from(
+                document.querySelectorAll(
+                    "#skillsCheckboxGrid input:checked"
+                )
+            )
+            .map(
+                input => input.value
+            );
+
+
+        return [
+
+            ...checkedSkills,
+
+            ...customSkills
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       DISPLAY TAGS
+    ===================================================== */
+
+    function displayTags(
+        containerId,
+        skills
+    ) {
+
+        const container =
+            document.getElementById(
+                containerId
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (
+            !Array.isArray(skills) ||
+            skills.length === 0
+        ) {
+
+            container.innerHTML =
+                "<span class='empty-tag'>None identified</span>";
+
+            return;
+        }
+
+
+        skills.forEach(
+            function (skill) {
+
+                const tag =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                tag.className =
+                    "skill-tag";
+
+
+                tag.textContent =
+                    skill;
+
+
+                container.appendChild(
+                    tag
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ANALYZE SKILL GAP
+    ===================================================== */
+
+    analyzeGoalBtn.addEventListener(
+        "click",
+        async function () {
+
+
+            /* -----------------------------------------
+               GET GOAL
+            ----------------------------------------- */
+
+            const goalCategory =
+                goalType.value;
+
+
+            const target =
+                goalTarget.value.trim();
+
+
+            /* -----------------------------------------
+               GET CURRENT SKILLS
+            ----------------------------------------- */
+
+            let currentSkills =
+                getCurrentSkills();
+
+
+            /* -----------------------------------------
+               VALIDATE GOAL
+            ----------------------------------------- */
+
+            if (!goalCategory) {
+
+                analysisStatus.textContent =
+                    "Please select a goal type.";
+
+                return;
+            }
+
+
+            if (!target) {
+
+                analysisStatus.textContent =
+                    "Please enter your specific target.";
+
+                goalTarget.focus();
+
+                return;
+            }
+
+
+            /* -----------------------------------------
+               USE QUIZ AS SKILL EVIDENCE
+            ----------------------------------------- */
+
+            if (
+                currentSkills.length === 0 &&
+                quizEvidence &&
+                quizEvidence.subject
+            ) {
+
+                currentSkills.push(
+                    `${quizEvidence.subject} - ${quizEvidence.topic || "Quiz Topic"}`
+                );
+
+            }
+
+
+            /*
+             If there is no manually selected skill
+             and no quiz evidence, continue anyway.
+             Gemini can still analyze the goal.
+            */
+
+
+            /* -----------------------------------------
+               GOAL NAME
+            ----------------------------------------- */
+
+            const goalName =
+                `${goalCategory}: ${target}`;
+
+
+            /* -----------------------------------------
+               LOADING
+            ----------------------------------------- */
+
+            analyzeGoalBtn.disabled =
+                true;
+
+
+            analyzeGoalBtn.textContent =
+                "🤖 Gemini is analyzing...";
+
+
+            analysisStatus.textContent =
+                "Analyzing your skills against your target...";
+
+
+            try {
+
+
+                /* =====================================
+                   BACKEND REQUEST
+                ===================================== */
+
+                const response =
+                    await fetch(
+                        "http://127.0.0.1:5000/api/skill-gap",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    goal:
+                                        goalName,
+
+                                    currentSkills:
+                                        currentSkills,
+
+                                    quizEvidence:
+                                        quizEvidence
+
+                                })
+
+                        }
+                    );
+
+
+                /* =====================================
+                   RESPONSE
+                ===================================== */
+
+                const data =
+                    await response.json();
+
+
+                /* =====================================
+                   ERROR
+                ===================================== */
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.error ||
+                        "Skill gap analysis failed."
+                    );
+
+                }
+
+
+                /* =====================================
+                   ANALYSIS
+                ===================================== */
+
+                const analysis =
+                    data.analysis || {};
+
+
+                const requiredSkills =
+                    Array.isArray(
+                        analysis.required_skills
+                    )
+                    ? analysis.required_skills
+                    : [];
+
+
+                const existingSkills =
+                    Array.isArray(
+                        analysis.existing_skills
+                    )
+                    ? analysis.existing_skills
+                    : [];
+
+
+                const improveSkills =
+                    Array.isArray(
+                        analysis.skills_to_improve
+                    )
+                    ? analysis.skills_to_improve
+                    : [];
+
+
+                const missingSkills =
+                    Array.isArray(
+                        analysis.missing_skills
+                    )
+                    ? analysis.missing_skills
+                    : [];
+
+
+                const learningOrder =
+                    Array.isArray(
+                        analysis.learning_order
+                    )
+                    ? analysis.learning_order
+                    : [];
+
+
+                const nextAction =
+                    analysis.next_action ||
+                    "Start learning the first skill in your recommended learning order.";
+
+
+                /* =====================================
+                   DISPLAY RESULTS
+                ===================================== */
+
+                displayTags(
+                    "requiredSkillsList",
+                    requiredSkills
+                );
+
+
+                displayTags(
+                    "existingSkills",
+                    existingSkills
+                );
+
+
+                displayTags(
+                    "skillsToImprove",
+                    improveSkills
+                );
+
+
+                displayTags(
+                    "missingSkills",
+                    missingSkills
+                );
+
+
+                /* =====================================
+                   LEARNING ORDER
+                ===================================== */
+
+                const learningOrderList =
+                    document.getElementById(
+                        "learningOrderList"
+                    );
+
+
+                learningOrderList.innerHTML =
+                    "";
+
+
+                if (
+                    learningOrder.length === 0
+                ) {
+
+                    learningOrderList.innerHTML =
+                        "<li>No learning order available.</li>";
+
+                }
+
+                else {
+
+                    learningOrder.forEach(
+                        function (skill) {
+
+                            const li =
+                                document.createElement(
+                                    "li"
+                                );
+
+
+                            li.textContent =
+                                skill;
+
+
+                            learningOrderList.appendChild(
+                                li
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =====================================
+                   NEXT ACTION
+                ===================================== */
+
+                document.getElementById(
+                    "skillNextAction"
+                ).textContent =
+                    nextAction;
+
+
+                /* =====================================
+                   QUIZ EVIDENCE
+                ===================================== */
+
+                const quizEvidenceBox =
+                    document.getElementById(
+                        "quizEvidence"
+                    );
+
+
+                if (
+                    quizEvidence &&
+                    quizEvidence.subject
+                ) {
+
+                    quizEvidenceBox.innerHTML = `
+
+                        <p>
+                            <strong>Subject:</strong>
+                            ${quizEvidence.subject}
+                        </p>
+
+                        <p>
+                            <strong>Topic:</strong>
+                            ${quizEvidence.topic || "N/A"}
+                        </p>
+
+                        <p>
+                            <strong>Score:</strong>
+                            ${quizEvidence.score || 0}%
+                        </p>
+
+                        <p>
+                            <strong>Correct:</strong>
+                            ${quizEvidence.correct || 0}
+                            /
+                            ${quizEvidence.total || 0}
+                        </p>
+
+                        <p>
+                            <strong>Difficulty:</strong>
+                            ${quizEvidence.difficulty || "N/A"}
+                        </p>
+
+                    `;
+
+                }
+
+                else {
+
+                    quizEvidenceBox.innerHTML = `
+
+                        <p>
+                            No recent quiz evidence found.
+                        </p>
+
+                        <p>
+                            Take an Adaptive Quiz to give
+                            SmartLearn more learning evidence.
+                        </p>
+
+                    `;
+
+                }
+
+
+                /* =====================================
+                   SAVE RESULTS
+                ===================================== */
+
+                localStorage.setItem(
+                    "smartLearnGoal",
+                    goalName
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnCurrentSkills",
+                    JSON.stringify(
+                        currentSkills
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnRequiredSkills",
+                    JSON.stringify(
+                        requiredSkills
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnExistingSkills",
+                    JSON.stringify(
+                        existingSkills
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnImproveSkills",
+                    JSON.stringify(
+                        improveSkills
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnMissingSkills",
+                    JSON.stringify(
+                        missingSkills
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnLearningOrder",
+                    JSON.stringify(
+                        learningOrder
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "smartLearnNextAction",
+                    nextAction
+                );
+
+
+                /* =====================================
+                   SHOW RESULT
+                ===================================== */
+
+                skillAnalysisResult.style.display =
+                    "block";
+
+
+                analysisStatus.textContent =
+                    "✅ Skill gap analysis completed successfully.";
+
+
+                analyzeGoalBtn.textContent =
+                    "🔍 Analyze Again";
+
+
+                skillAnalysisResult.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Skill Gap Error:",
+                    error
+                );
+
+
+                analysisStatus.textContent =
+                    "❌ " + error.message;
+
+
+                analyzeGoalBtn.textContent =
+                    "🔍 Try Again";
+
+            }
+
+
+            finally {
+
+                analyzeGoalBtn.disabled =
+                    false;
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>

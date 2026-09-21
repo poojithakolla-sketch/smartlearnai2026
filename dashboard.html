@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartLearn AI - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-page">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="dashboard-sidebar">
+
+        <!-- Logo -->
+        <div class="sidebar-logo">
+            <div class="logo-icon">🧠</div>
+
+            <div>
+                <h2>SmartLearn AI</h2>
+                <p>Learning Intelligence</p>
+            </div>
+        </div>
+
+
+        <!-- Student Profile -->
+        <div class="sidebar-profile">
+
+            <div class="profile-avatar">
+                👨‍🎓
+            </div>
+
+            <div class="profile-info">
+                <h3 id="sidebarStudentName">Student</h3>
+                <p id="sidebarEducation">Student</p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+
+            <button
+                class="nav-item active"
+                onclick="window.location.href='dashboard.html'">
+
+                <span>🏠</span>
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='learning-dna.html'">
+
+                <span>🧬</span>
+                <span>Learning DNA</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='adaptive-quiz.html'">
+
+                <span>🎯</span>
+                <span>Adaptive Quiz</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='analytics.html'">
+
+                <span>📊</span>
+                <span>Performance</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='skill-gap.html'">
+
+                <span>🔍</span>
+                <span>Skill Gap</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='ai-assistant.html'">
+
+                <span>🤖</span>
+                <span>AI Assistant</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='resource-finder.html'">
+
+                <span>📚</span>
+                <span>Resource Finder</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='study-planner.html'">
+
+                <span>📅</span>
+                <span>Study Planner</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="window.location.href='resume-builder.html'">
+
+                <span>📄</span>
+                <span>Resume Builder</span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- Logout -->
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                onclick="logoutUser()">
+
+                <span>🚪</span>
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="dashboard-main">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div>
+
+                <p class="dashboard-welcome">
+                    Welcome back 👋
+                </p>
+
+                <h1 id="dashboardTitle">
+                    Your Learning Dashboard
+                </h1>
+
+                <p id="dashboardSubtitle">
+                    Let's continue your learning journey.
+                </p>
+
+            </div>
+
+
+            <div class="header-profile">
+
+                <div class="header-avatar">
+                    👨‍🎓
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= STUDENT INFO ================= -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Your Learning Overview</h2>
+
+                    <p>
+                        SmartLearn AI continuously analyzes your learning activity
+                        and suggests what to learn next.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+                <!-- Education -->
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        🎓
+                    </div>
+
+                    <div>
+                        <p>Education</p>
+
+                        <h3 id="overviewEducation">
+                            --
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <!-- Class / Course -->
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📘
+                    </div>
+
+                    <div>
+                        <p>Class / Course</p>
+
+                        <h3 id="overviewClass">
+                            --
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📈
+                    </div>
+
+                    <div>
+                        <p>Learning Progress</p>
+
+                        <h3 id="overviewProgress">
+                            0%
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <!-- Learning DNA -->
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        🧬
+                    </div>
+
+                    <div>
+                        <p>Learning DNA</p>
+
+                        <h3>
+                            Active
+                        </h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= NEXT BEST ACTION ================= -->
+        <section class="next-action-section">
+
+            <div class="next-action-card">
+
+                <div class="next-action-icon">
+                    🚀
+                </div>
+
+
+                <div class="next-action-content">
+
+                    <span class="action-label">
+                        AI RECOMMENDATION
+                    </span>
+
+                    <h2 id="nextBestAction">
+                        Take your first Adaptive Quiz
+                    </h2>
+
+                    <p id="nextActionDescription">
+                        SmartLearn AI will analyze your performance
+                        and identify your learning gaps.
+                    </p>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="window.location.href='adaptive-quiz.html'">
+
+                        Start Learning →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LEARNING DNA ================= -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>Learning DNA</h2>
+
+                    <p>
+                        Your learning profile is continuously evolving
+                        based on your learning evidence.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="secondary-btn"
+                    onclick="window.location.href='learning-dna.html'">
+
+                    View Learning DNA →
+
+                </button>
+
+            </div>
+
+
+            <div class="dna-grid">
+
+                <!-- Knowledge -->
+                <div class="dna-card">
+
+                    <div class="dna-icon">
+                        🧠
+                    </div>
+
+                    <h3>Knowledge</h3>
+
+                    <p>
+                        Concepts understood based on quiz performance.
+                    </p>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="knowledgeProgress"
+                            style="width: 0%;">
+                        </div>
+
+                    </div>
+
+                    <span id="knowledgeValue">
+                        0%
+                    </span>
+
+                </div>
+
+
+
+                <!-- Retention -->
+                <div class="dna-card">
+
+                    <div class="dna-icon">
+                        🔄
+                    </div>
+
+                    <h3>Retention</h3>
+
+                    <p>
+                        How well previously learned concepts are remembered.
+                    </p>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="retentionProgress"
+                            style="width: 0%;">
+                        </div>
+
+                    </div>
+
+                    <span id="retentionValue">
+                        0%
+                    </span>
+
+                </div>
+
+
+
+                <!-- Problem Solving -->
+                <div class="dna-card">
+
+                    <div class="dna-icon">
+                        💡
+                    </div>
+
+                    <h3>Problem Solving</h3>
+
+                    <p>
+                        Ability to apply concepts to problems.
+                    </p>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="problemSolvingProgress"
+                            style="width: 0%;">
+                        </div>
+
+                    </div>
+
+                    <span id="problemSolvingValue">
+                        0%
+                    </span>
+
+                </div>
+
+
+
+                <!-- Explanation -->
+                <div class="dna-card">
+
+                    <div class="dna-icon">
+                        🗣️
+                    </div>
+
+                    <h3>Explanation Ability</h3>
+
+                    <p>
+                        Ability to explain concepts clearly.
+                    </p>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="explanationProgress"
+                            style="width: 0%;">
+                        </div>
+
+                    </div>
+
+                    <span id="explanationValue">
+                        0%
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>Quick Actions</h2>
+
+                    <p>
+                        Continue learning with SmartLearn AI tools.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+                <!-- Adaptive Quiz -->
+                <div
+                    class="quick-action-card"
+                    onclick="window.location.href='adaptive-quiz.html'">
+
+                    <div class="quick-action-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Take Adaptive Quiz
+                    </h3>
+
+                    <p>
+                        Test your knowledge with questions
+                        adapted to your level.
+                    </p>
+
+                    <span>
+                        Start Quiz →
+                    </span>
+
+                </div>
+
+
+
+                <!-- Skill Gap -->
+                <div
+                    class="quick-action-card"
+                    onclick="window.location.href='skill-gap.html'">
+
+                    <div class="quick-action-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Find Skill Gaps
+                    </h3>
+
+                    <p>
+                        Identify weak concepts and
+                        understand what to improve.
+                    </p>
+
+                    <span>
+                        Analyze Skills →
+                    </span>
+
+                </div>
+
+
+
+                <!-- AI Assistant -->
+                <div
+                    class="quick-action-card"
+                    onclick="window.location.href='ai-assistant.html'">
+
+                    <div class="quick-action-icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Ask AI Assistant
+                    </h3>
+
+                    <p>
+                        Ask questions and get personalized
+                        learning guidance.
+                    </p>
+
+                    <span>
+                        Ask AI →
+                    </span>
+
+                </div>
+
+
+
+                <!-- Resource Finder -->
+                <div
+                    class="quick-action-card"
+                    onclick="window.location.href='resource-finder.html'">
+
+                    <div class="quick-action-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Find Resources
+                    </h3>
+
+                    <p>
+                        Discover learning resources based
+                        on your needs.
+                    </p>
+
+                    <span>
+                        Find Resources →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RECENT LEARNING ================= -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>Recent Learning Activity</h2>
+
+                    <p>
+                        Your latest learning evidence.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="activity-container"
+                id="recentActivity">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📖
+                    </div>
+
+                    <h3>
+                        No learning activity yet
+                    </h3>
+
+                    <p>
+                        Complete an Adaptive Quiz to start
+                        building your Learning DNA.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="window.location.href='adaptive-quiz.html'">
+
+                        Start First Quiz
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="dashboard-footer">
+
+            <p>
+                SmartLearn AI • Learning Intelligence System
+            </p>
+
+            <p>
+                Learn • Analyze • Improve • Grow 🚀
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+     * Load student information
+     */
+
+    try {
+
+        const educationLevel =
+            localStorage.getItem("educationLevel");
+
+        const academicData =
+            JSON.parse(
+                localStorage.getItem("academicData") || "{}"
+            );
+
+
+        const educationNames = {
+
+            school: "School",
+
+            "junior-college": "Junior College",
+
+            ug: "Undergraduate",
+
+            pg: "Postgraduate"
+
+        };
+
+
+        const educationName =
+            educationNames[educationLevel] || "Student";
+
+
+        /*
+         * Sidebar
+         */
+
+        const sidebarEducation =
+            document.getElementById("sidebarEducation");
+
+        if (sidebarEducation) {
+
+            sidebarEducation.textContent =
+                educationName;
+
+        }
+
+
+        /*
+         * Education Overview
+         */
+
+        const overviewEducation =
+            document.getElementById("overviewEducation");
+
+        if (overviewEducation) {
+
+            overviewEducation.textContent =
+                educationName;
+
+        }
+
+
+        /*
+         * Determine Class / Course
+         */
+
+        let classOrCourse = "--";
+
+
+        if (educationLevel === "school") {
+
+            classOrCourse =
+                academicData.class || "--";
+
+        }
+
+        else if (educationLevel === "junior-college") {
+
+            classOrCourse =
+                academicData.stream || "--";
+
+        }
+
+        else if (
+            educationLevel === "ug" ||
+            educationLevel === "pg"
+        ) {
+
+            classOrCourse =
+                academicData.course || "--";
+
+        }
+
+
+        const overviewClass =
+            document.getElementById("overviewClass");
+
+        if (overviewClass) {
+
+            overviewClass.textContent =
+                classOrCourse;
+
+        }
+
+
+        /*
+         * Dashboard title
+         */
+
+        const dashboardTitle =
+            document.getElementById("dashboardTitle");
+
+        if (dashboardTitle) {
+
+            dashboardTitle.textContent =
+                `Your ${educationName} Learning Dashboard`;
+
+        }
+
+
+        /*
+         * Learning progress
+         */
+
+        const savedProgress =
+            Number(
+                localStorage.getItem("learningProgress") || 0
+            );
+
+
+        const overviewProgress =
+            document.getElementById("overviewProgress");
+
+        if (overviewProgress) {
+
+            overviewProgress.textContent =
+                savedProgress + "%";
+
+        }
+
+
+        /*
+         * Learning DNA initial values
+         *
+         * If quiz data exists, use quiz performance.
+         */
+
+        const lastScore =
+            Number(
+                localStorage.getItem("lastQuizScore") || 0
+            );
+
+
+        const lastCorrect =
+            Number(
+                localStorage.getItem("lastQuizCorrect") || 0
+            );
+
+
+        const lastTotal =
+            Number(
+                localStorage.getItem("lastQuizTotal") || 0
+            );
+
+
+        let knowledge = 0;
+
+        if (lastTotal > 0) {
+
+            knowledge =
+                Math.round(
+                    (lastCorrect / lastTotal) * 100
+                );
+
+        }
+
+
+        /*
+         * Update Learning DNA cards
+         */
+
+        const knowledgeProgress =
+            document.getElementById(
+                "knowledgeProgress"
+            );
+
+        const knowledgeValue =
+            document.getElementById(
+                "knowledgeValue"
+            );
+
+
+        if (knowledgeProgress) {
+
+            knowledgeProgress.style.width =
+                knowledge + "%";
+
+        }
+
+
+        if (knowledgeValue) {
+
+            knowledgeValue.textContent =
+                knowledge + "%";
+
+        }
+
+
+        /*
+         * Retention
+         */
+
+        const retention =
+            Math.min(
+                100,
+                Math.round(knowledge * 0.9)
+            );
+
+
+        const retentionProgress =
+            document.getElementById(
+                "retentionProgress"
+            );
+
+        const retentionValue =
+            document.getElementById(
+                "retentionValue"
+            );
+
+
+        if (retentionProgress) {
+
+            retentionProgress.style.width =
+                retention + "%";
+
+        }
+
+
+        if (retentionValue) {
+
+            retentionValue.textContent =
+                retention + "%";
+
+        }
+
+
+        /*
+         * Problem Solving
+         */
+
+        const problemSolving =
+            Math.min(
+                100,
+                Math.round(knowledge * 0.85)
+            );
+
+
+        const problemSolvingProgress =
+            document.getElementById(
+                "problemSolvingProgress"
+            );
+
+        const problemSolvingValue =
+            document.getElementById(
+                "problemSolvingValue"
+            );
+
+
+        if (problemSolvingProgress) {
+
+            problemSolvingProgress.style.width =
+                problemSolving + "%";
+
+        }
+
+
+        if (problemSolvingValue) {
+
+            problemSolvingValue.textContent =
+                problemSolving + "%";
+
+        }
+
+
+        /*
+         * Explanation Ability
+         */
+
+        const explanation =
+            Math.min(
+                100,
+                Math.round(knowledge * 0.75)
+            );
+
+
+        const explanationProgress =
+            document.getElementById(
+                "explanationProgress"
+            );
+
+        const explanationValue =
+            document.getElementById(
+                "explanationValue"
+            );
+
+
+        if (explanationProgress) {
+
+            explanationProgress.style.width =
+                explanation + "%";
+
+        }
+
+
+        if (explanationValue) {
+
+            explanationValue.textContent =
+                explanation + "%";
+
+        }
+
+
+        /*
+         * Last quiz activity
+         */
+
+        const activityContainer =
+            document.getElementById(
+                "recentActivity"
+            );
+
+
+        const lastSubject =
+            localStorage.getItem(
+                "lastQuizSubject"
+            );
+
+
+        const lastTopic =
+            localStorage.getItem(
+                "lastQuizTopic"
+            );
+
+
+        const lastDifficulty =
+            localStorage.getItem(
+                "lastQuizDifficulty"
+            );
+
+
+        if (
+            activityContainer &&
+            lastSubject
+        ) {
+
+            activityContainer.innerHTML = `
+
+                <div class="activity-card">
+
+                    <div class="activity-icon">
+                        🎯
+                    </div>
+
+                    <div class="activity-content">
+
+                        <h3>
+                            Adaptive Quiz Completed
+                        </h3>
+
+                        <p>
+                            ${lastSubject}
+                            ${lastTopic ? " • " + lastTopic : ""}
+                        </p>
+
+                        <span>
+                            Difficulty:
+                            ${lastDifficulty || "Adaptive"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-score">
+
+                        <strong>
+                            ${lastScore}%
+                        </strong>
+
+                        <span>
+                            ${lastCorrect}/${lastTotal}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /*
+         * Next Best Action
+         */
+
+        const nextBestAction =
+            document.getElementById(
+                "nextBestAction"
+            );
+
+        const nextActionDescription =
+            document.getElementById(
+                "nextActionDescription"
+            );
+
+
+        if (
+            lastSubject &&
+            lastTopic &&
+            lastTotal > 0
+        ) {
+
+            if (knowledge < 60) {
+
+                if (nextBestAction) {
+
+                    nextBestAction.textContent =
+                        `Revise ${lastTopic}`;
+
+                }
+
+
+                if (nextActionDescription) {
+
+                    nextActionDescription.textContent =
+                        `Your recent quiz score was ${lastScore}%. Revising this topic can strengthen your understanding.`;
+
+                }
+
+            }
+
+            else {
+
+                if (nextBestAction) {
+
+                    nextBestAction.textContent =
+                        `Practice more ${lastTopic}`;
+
+                }
+
+
+                if (nextActionDescription) {
+
+                    nextActionDescription.textContent =
+                        `You have a good foundation. Continue practicing to strengthen your skills.`;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard loading error:",
+            error
+        );
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartLearn AI - Learning DNA</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           LEARNING DNA PAGE
+           ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: #172033;
+        }
+
+        /* =========================================
+           MAIN DASHBOARD
+           ========================================= */
+
+        .dashboard-page {
+            min-height: 100vh;
+            display: flex;
+            background: #f7f9fc;
+        }
+
+        /* =========================================
+           SIDEBAR
+           ========================================= */
+
+        .dashboard-sidebar {
+            width: 255px;
+            min-height: 100vh;
+
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
+
+            display: flex;
+            flex-direction: column;
+
+            position: sticky;
+            top: 0;
+
+            height: 100vh;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 25px 22px;
+
+            border-bottom: 1px solid #eef0f4;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+        .sidebar-brand span {
+            color: #6366f1;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .dashboard-nav {
+            padding: 20px 13px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 5px;
+
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .nav-item,
+        .logout-btn {
+            width: 100%;
+            min-height: 44px;
+
+            border: none;
+            border-radius: 10px;
+
+            padding: 0 13px;
+
+            background: transparent;
+
+            color: #64748b;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-item span,
+        .logout-btn span {
+            width: 22px;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            background: #f5f3ff;
+            color: #4f46e5;
+        }
+
+        .nav-item.active {
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        .sidebar-bottom {
+            padding: 14px;
+
+            border-top: 1px solid #eef0f4;
+        }
+
+        .logout-btn:hover {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        /* =========================================
+           MAIN CONTENT
+           ========================================= */
+
+        .dashboard-main {
+            flex: 1;
+
+            min-width: 0;
+
+            padding: 30px 40px 50px;
+
+            overflow-y: auto;
+        }
+
+        /* =========================================
+           TOP BAR
+           ========================================= */
+
+        .dashboard-topbar {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 28px;
+        }
+
+        .dashboard-label {
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            color: #6366f1;
+        }
+
+        .dashboard-topbar h1 {
+            margin-top: 7px;
+            margin-bottom: 6px;
+
+            font-size: 31px;
+
+            color: #111827;
+
+            letter-spacing: -0.7px;
+        }
+
+        .dashboard-topbar p {
+            font-size: 14px;
+
+            color: #64748b;
+        }
+
+        .profile-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .notification {
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+        .profile-avatar {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            font-weight: 800;
+        }
+
+        /* =========================================
+           INTRO CARD
+           ========================================= */
+
+        .dna-intro-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 5px 18px rgba(30, 41, 59, 0.04);
+        }
+
+        .dna-intro-icon {
+            width: 65px;
+            height: 65px;
+
+            flex-shrink: 0;
+
+            border-radius: 16px;
+
+            background: #eef2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .dna-intro-card span {
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #6366f1;
+        }
+
+        .dna-intro-card h2 {
+            margin: 6px 0 7px;
+
+            font-size: 21px;
+
+            color: #1e293b;
+        }
+
+        .dna-intro-card p {
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            color: #64748b;
+        }
+
+        /* =========================================
+           DNA METRICS
+           ========================================= */
+
+        .dna-detail-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin-bottom: 32px;
+        }
+
+        .dna-detail-card {
+            padding: 20px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 4px 15px rgba(30, 41, 59, 0.03);
+        }
+
+        .detail-top {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 14px;
+        }
+
+        .detail-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            background: #eef2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+        }
+
+        .detail-top span {
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.9px;
+
+            color: #94a3b8;
+        }
+
+        .dna-detail-card h3 {
+            font-size: 18px;
+
+            color: #334155;
+
+            margin-bottom: 7px;
+        }
+
+        .dna-detail-card p {
+            min-height: 43px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            color: #64748b;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           PROGRESS BAR
+           ========================================= */
+
+        .progress-bar {
+            width: 100%;
+
+            height: 7px;
+
+            border-radius: 20px;
+
+            background: #e2e8f0;
+
+            overflow: hidden;
+
+            margin-bottom: 9px;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: linear-gradient(
+                90deg,
+                #6366f1,
+                #8b5cf6
+            );
+        }
+
+        .dna-detail-card small {
+            font-size: 9px;
+
+            color: #94a3b8;
+        }
+
+        /* =========================================
+           SECTION
+           ========================================= */
+
+        .dashboard-section {
+            margin-bottom: 32px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 17px;
+        }
+
+        .section-heading span {
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #94a3b8;
+        }
+
+        .section-heading h2 {
+            margin-top: 5px;
+
+            font-size: 22px;
+
+            color: #1e293b;
+        }
+
+        /* =========================================
+           PROCESS
+           ========================================= */
+
+        .dna-process {
+            display: grid;
+
+            grid-template-columns:
+                1fr auto 1fr auto 1fr auto 1fr;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .process-card {
+            min-height: 220px;
+
+            padding: 20px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            position: relative;
+        }
+
+        .process-number {
+            position: absolute;
+
+            top: 14px;
+            right: 15px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: #cbd5e1;
+        }
+
+        .process-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef2ff;
+
+            border-radius: 12px;
+
+            font-size: 21px;
+
+            margin-bottom: 15px;
+        }
+
+        .process-card h3 {
+            font-size: 15px;
+
+            color: #1e293b;
+
+            margin-bottom: 8px;
+        }
+
+        .process-card p {
+            font-size: 11px;
+
+            line-height: 1.55;
+
+            color: #64748b;
+        }
+
+        .process-arrow {
+            font-size: 22px;
+
+            color: #a5b4fc;
+
+            font-weight: 700;
+        }
+
+        /* =========================================
+           NEXT ACTION
+           ========================================= */
+
+        .next-action-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff,
+                    #f8faff
+                );
+
+            border: 1px solid #ddd6fe;
+        }
+
+        .next-action-icon {
+            width: 55px;
+            height: 55px;
+
+            flex-shrink: 0;
+
+            border-radius: 15px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 26px;
+        }
+
+        .next-action-content {
+            flex: 1;
+        }
+
+        .next-action-content > span {
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #6366f1;
+        }
+
+        .next-action-content h2 {
+            margin: 5px 0 6px;
+
+            font-size: 19px;
+
+            color: #1e293b;
+        }
+
+        .next-action-content p {
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: #64748b;
+        }
+
+        .action-btn {
+            border: none;
+
+            padding: 12px 19px;
+
+            border-radius: 10px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            transition: 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: #4338ca;
+
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .dna-detail-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .dna-process {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .process-arrow {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .dashboard-sidebar {
+                width: 75px;
+            }
+
+            .sidebar-brand {
+                padding: 15px 10px;
+
+                justify-content: center;
+            }
+
+            .sidebar-brand > div:last-child {
+                display: none;
+            }
+
+            .nav-item,
+            .logout-btn {
+                justify-content: center;
+
+                padding: 0;
+
+                font-size: 0;
+            }
+
+            .nav-item span,
+            .logout-btn span {
+                font-size: 17px;
+            }
+
+            .dashboard-main {
+                padding: 22px 16px;
+            }
+
+            .dashboard-topbar h1 {
+                font-size: 24px;
+            }
+
+            .dashboard-topbar p {
+                font-size: 12px;
+            }
+
+            .dna-intro-card {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .dna-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dna-process {
+                grid-template-columns: 1fr;
+            }
+
+            .next-action-card {
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="dashboard-page">
+
+        <!-- =====================================
+             SIDEBAR
+             ===================================== -->
+
+        <aside class="dashboard-sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-logo">
+                    S
+                </div>
+
+                <div>
+
+                    <div class="brand-name">
+                        SmartLearn
+                    </div>
+
+                    <span>
+                        AI
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="dashboard-nav">
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='dashboard.html'"
+                >
+                    <span>🏠</span>
+                    Dashboard
+                </button>
+
+
+                <button class="nav-item active">
+
+                    <span>🧠</span>
+
+                    Learning DNA
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='adaptive-quiz.html'"
+                >
+                    <span>📝</span>
+                    Adaptive Quiz
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='analytics.html'"
+                >
+                    <span>📊</span>
+                    Performance
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='skill-gap.html'"
+                >
+                    <span>🎯</span>
+                    Skill Gap
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='ai-assistant.html'"
+                >
+                    <span>🤖</span>
+                    AI Assistant
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='resource-finder.html'"
+                >
+                    <span>🔎</span>
+                    Resource Finder
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='study-planner.html'"
+                >
+                    <span>📅</span>
+                    Study Planner
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="window.location.href='resume-builder.html'"
+                >
+                    <span>📄</span>
+                    Resume Builder
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <button class="nav-item">
+
+                    <span>⚙️</span>
+
+                    Settings
+
+                </button>
+
+
+                <button
+                    class="logout-btn"
+                    onclick="logoutUser()"
+                >
+
+                    <span>
+                        ↪️
+                    </span>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================
+             MAIN
+             ===================================== -->
+
+        <main class="dashboard-main">
+
+
+            <!-- TOP BAR -->
+
+            <header class="dashboard-topbar">
+
+                <div>
+
+                    <span class="dashboard-label">
+                        AI LEARNING INTELLIGENCE
+                    </span>
+
+                    <h1>
+                        Your Learning DNA 🧬
+                    </h1>
+
+                    <p>
+                        A continuously evolving profile of how you learn.
+                    </p>
+
+                </div>
+
+
+                <div class="profile-area">
+
+                    <div class="notification">
+                        🔔
+                    </div>
+
+                    <div class="profile-avatar">
+                        S
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =====================================
+                 INTRO
+                 ===================================== -->
+
+            <section class="dna-intro-card">
+
+                <div class="dna-intro-icon">
+                    🧠
+                </div>
+
+                <div>
+
+                    <span>
+                        SMARTLEARN INTELLIGENCE
+                    </span>
+
+                    <h2>
+                        Understanding Your Learning Pattern
+                    </h2>
+
+                    <p>
+                        SmartLearn AI analyzes your quiz performance,
+                        learning activity, mistakes, retention and
+                        explanation ability to continuously improve
+                        your personalized learning profile.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 DNA METRICS
+                 ===================================== -->
+
+            <section class="dna-detail-grid">
+
+
+                <!-- KNOWLEDGE -->
+
+                <div class="dna-detail-card">
+
+                    <div class="detail-top">
+
+                        <div class="detail-icon">
+                            🧠
+                        </div>
+
+                        <span>
+                            KNOWLEDGE
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Building
+                    </h3>
+
+
+                    <p>
+                        Measures your understanding of learned concepts.
+                    </p>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: 0%"
+                        ></div>
+
+                    </div>
+
+
+                    <small>
+                        More learning data required
+                    </small>
+
+                </div>
+
+
+                <!-- RETENTION -->
+
+                <div class="dna-detail-card">
+
+                    <div class="detail-top">
+
+                        <div class="detail-icon">
+                            🔄
+                        </div>
+
+                        <span>
+                            RETENTION
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Measuring
+                    </h3>
+
+
+                    <p>
+                        Tracks how well you remember concepts over time.
+                    </p>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: 0%"
+                        ></div>
+
+                    </div>
+
+
+                    <small>
+                        Revision data required
+                    </small>
+
+                </div>
+
+
+                <!-- PROBLEM SOLVING -->
+
+                <div class="dna-detail-card">
+
+                    <div class="detail-top">
+
+                        <div class="detail-icon">
+                            💡
+                        </div>
+
+                        <span>
+                            PROBLEM SOLVING
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Starting
+                    </h3>
+
+
+                    <p>
+                        Analyzes your approach to solving problems.
+                    </p>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: 0%"
+                        ></div>
+
+                    </div>
+
+
+                    <small>
+                        Practice data required
+                    </small>
+
+                </div>
+
+
+                <!-- EXPLANATION -->
+
+                <div class="dna-detail-card">
+
+                    <div class="detail-top">
+
+                        <div class="detail-icon">
+                            🗣️
+                        </div>
+
+                        <span>
+                            EXPLANATION
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Not Tested
+                    </h3>
+
+
+                    <p>
+                        Measures your ability to explain concepts clearly.
+                    </p>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: 0%"
+                        ></div>
+
+                    </div>
+
+
+                    <small>
+                        TeachBack activity required
+                    </small>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 HOW IT WORKS
+                 ===================================== -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span>
+                            HOW IT WORKS
+                        </span>
+
+                        <h2>
+                            Building Your Learning DNA
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dna-process">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            01
+                        </div>
+
+                        <div class="process-icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            Learning Evidence
+                        </h3>
+
+                        <p>
+                            Quizzes, activities and learning interactions
+                            provide evidence about your understanding.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            02
+                        </div>
+
+                        <div class="process-icon">
+                            🔍
+                        </div>
+
+                        <h3>
+                            AI Analysis
+                        </h3>
+
+                        <p>
+                            SmartLearn AI identifies patterns in your
+                            performance and learning behavior.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            03
+                        </div>
+
+                        <div class="process-icon">
+                            🧬
+                        </div>
+
+                        <h3>
+                            Learning DNA
+                        </h3>
+
+                        <p>
+                            Your learning profile continuously evolves
+                            as more evidence becomes available.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            04
+                        </div>
+
+                        <div class="process-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Next Best Action
+                        </h3>
+
+                        <p>
+                            The system recommends an appropriate next
+                            learning activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 NEXT ACTION
+                 ===================================== -->
+
+            <section class="next-action-card">
+
+                <div class="next-action-icon">
+                    🎯
+                </div>
+
+
+                <div class="next-action-content">
+
+                    <span>
+                        CURRENT RECOMMENDATION
+                    </span>
+
+                    <h2>
+                        Build Your First Learning Profile
+                    </h2>
+
+                    <p>
+                        Complete an adaptive quiz to give SmartLearn AI
+                        its first learning evidence.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="action-btn"
+                    onclick="window.location.href='adaptive-quiz.html'"
+                >
+                    Take Quiz →
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

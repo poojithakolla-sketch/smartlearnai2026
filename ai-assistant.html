@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Assistant | SmartLearn AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="ai-assistant-page">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="ai-header">
+
+        <div class="ai-brand">
+            <div class="ai-logo">🧠</div>
+
+            <div>
+                <h1>SmartLearn AI</h1>
+                <p>AI Learning Assistant</p>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="window.location.href='dashboard.html'">
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="ai-main">
+
+        <section class="ai-intro">
+
+            <h2>How can I help you learn? 🤖</h2>
+
+            <p>
+                Ask questions, understand concepts, solve problems,
+                or get step-by-step explanations.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             STUDENT CONTEXT
+        ========================== -->
+
+        <section class="ai-context">
+
+            <div class="context-field">
+
+                <label for="aiSubject">Subject</label>
+
+                <input
+                    type="text"
+                    id="aiSubject"
+                    placeholder="Example: Python, C Programming, DBMS"
+                >
+
+            </div>
+
+
+            <div class="context-field">
+
+                <label for="aiTopic">Topic</label>
+
+                <input
+                    type="text"
+                    id="aiTopic"
+                    placeholder="Example: Functions, Pointers, SQL"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUGGESTED QUESTIONS
+        ========================== -->
+
+        <section class="suggestions">
+
+            <h3>Try asking</h3>
+
+            <div class="suggestion-grid">
+
+                <button onclick="useSuggestion('Explain this concept in simple words')">
+                    💡 Explain a concept
+                </button>
+
+                <button onclick="useSuggestion('Give me a simple example')">
+                    📝 Give an example
+                </button>
+
+                <button onclick="useSuggestion('Explain this step by step')">
+                    🔍 Step-by-step explanation
+                </button>
+
+                <button onclick="useSuggestion('Give me practice questions')">
+                    🎯 Practice questions
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CHAT AREA
+        ========================== -->
+
+        <section class="chat-container">
+
+            <div id="chatMessages" class="chat-messages">
+
+                <div class="message ai-message">
+
+                    <div class="message-avatar">
+                        🤖
+                    </div>
+
+                    <div class="message-content">
+
+                        <strong>SmartLearn AI</strong>
+
+                        <p>
+                            Hi! 👋 I'm your AI Learning Assistant.
+                            Ask me anything about your studies and
+                            I'll help you understand it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION INPUT
+            ========================== -->
+
+            <div class="chat-input-area">
+
+                <textarea
+                    id="aiQuestion"
+                    placeholder="Ask your learning question..."
+                    rows="3"
+                ></textarea>
+
+                <button
+                    id="askAiBtn"
+                    onclick="askAI()"
+                >
+                    Ask AI 🤖
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="ai-footer">
+
+        <p>
+            SmartLearn AI • Learn smarter, not harder 🚀
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+const API_URL = "http://127.0.0.1:5000/api/ai-assistant";
+
+
+/* =========================================================
+   SUGGESTION BUTTON
+========================================================= */
+
+function useSuggestion(text) {
+
+    const questionInput = document.getElementById("aiQuestion");
+
+    questionInput.value = text;
+
+    questionInput.focus();
+}
+
+
+/* =========================================================
+   ADD MESSAGE TO CHAT
+========================================================= */
+
+function addMessage(type, message) {
+
+    const chatMessages =
+        document.getElementById("chatMessages");
+
+    const messageDiv =
+        document.createElement("div");
+
+    messageDiv.className =
+        type === "user"
+            ? "message user-message"
+            : "message ai-message";
+
+
+    const avatar =
+        type === "user"
+            ? "👤"
+            : "🤖";
+
+
+    messageDiv.innerHTML = `
+
+        <div class="message-avatar">
+            ${avatar}
+        </div>
+
+        <div class="message-content">
+
+            <strong>
+                ${type === "user" ? "You" : "SmartLearn AI"}
+            </strong>
+
+            <p>
+                ${formatAIResponse(message)}
+            </p>
+
+        </div>
+
+    `;
+
+
+    chatMessages.appendChild(messageDiv);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+}
+
+
+/* =========================================================
+   FORMAT AI RESPONSE
+========================================================= */
+
+function formatAIResponse(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\n/g, "<br>");
+}
+
+
+/* =========================================================
+   ASK AI
+========================================================= */
+
+async function askAI() {
+
+    const questionInput =
+        document.getElementById("aiQuestion");
+
+    const subjectInput =
+        document.getElementById("aiSubject");
+
+    const topicInput =
+        document.getElementById("aiTopic");
+
+    const askButton =
+        document.getElementById("askAiBtn");
+
+
+    const question =
+        questionInput.value.trim();
+
+    const subject =
+        subjectInput.value.trim();
+
+    const topic =
+        topicInput.value.trim();
+
+
+    if (!question) {
+
+        alert("Please enter your question.");
+
+        questionInput.focus();
+
+        return;
+    }
+
+
+    /* Show student's question */
+
+    addMessage("user", question);
+
+
+    /* Clear input */
+
+    questionInput.value = "";
+
+
+    /* Disable button */
+
+    askButton.disabled = true;
+
+    askButton.textContent = "Thinking... 🤔";
+
+
+    try {
+
+        const response = await fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                question: question,
+
+                educationLevel:
+                    localStorage.getItem("educationLevel") || "",
+
+                className:
+                    localStorage.getItem("className") || "",
+
+                subject: subject,
+
+                topic: topic
+
+            })
+
+        });
+
+
+        const data = await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to get response from AI."
+            );
+
+        }
+
+
+        /* Show AI answer */
+
+        addMessage(
+            "ai",
+            data.answer
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "AI Assistant Error:",
+            error
+        );
+
+
+        addMessage(
+            "ai",
+            "Sorry 😕 I couldn't connect to the AI right now. Please make sure the SmartLearn AI backend server is running."
+        );
+
+    }
+
+
+    /* Enable button again */
+
+    askButton.disabled = false;
+
+    askButton.textContent = "Ask AI 🤖";
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+document
+    .getElementById("aiQuestion")
+    .addEventListener("keydown", function(event) {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            askAI();
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

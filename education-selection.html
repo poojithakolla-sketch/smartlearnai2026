@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartLearn AI - Education</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="education-page">
+
+        <!-- Header -->
+        <header class="education-header">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+                <div class="brand-name">SmartLearn AI</div>
+            </div>
+
+            <div class="header-label">
+                PERSONALIZED LEARNING
+            </div>
+
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="education-container">
+
+            <div class="education-intro">
+
+                <span class="education-tag">
+                    STEP 1 OF 3
+                </span>
+
+                <h1>
+                    Tell Us About Your Education 🎓
+                </h1>
+
+                <p>
+                    Select your education level so SmartLearn AI can
+                    personalize your learning experience.
+                </p>
+
+            </div>
+
+
+            <!-- Education Cards -->
+            <div class="education-grid">
+
+                <!-- School -->
+                <button
+                    type="button"
+                    class="education-card"
+                    data-education="school"
+                >
+
+                    <div class="education-icon">
+                        🏫
+                    </div>
+
+                    <h2>
+                        School
+                    </h2>
+
+                    <span class="education-range">
+                        Classes 1–10
+                    </span>
+
+                    <p>
+                        Interactive learning,
+                        concept building & exam preparation
+                    </p>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- Junior College -->
+                <button
+                    type="button"
+                    class="education-card"
+                    data-education="junior-college"
+                >
+
+                    <div class="education-icon">
+                        📚
+                    </div>
+
+                    <h2>
+                        Junior College
+                    </h2>
+
+                    <span class="education-range">
+                        Classes 11–12
+                    </span>
+
+                    <p>
+                        Streams, board preparation
+                        & entrance exam preparation
+                    </p>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- Undergraduate -->
+                <button
+                    type="button"
+                    class="education-card"
+                    data-education="ug"
+                >
+
+                    <div class="education-icon">
+                        🎓
+                    </div>
+
+                    <h2>
+                        Undergraduate (UG)
+                    </h2>
+
+                    <span class="education-range">
+                        B.Tech, B.Com, B.Sc, BBA & more
+                    </span>
+
+                    <p>
+                        Course, semester & skill-based
+                        learning
+                    </p>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- Postgraduate -->
+                <button
+                    type="button"
+                    class="education-card"
+                    data-education="pg"
+                >
+
+                    <div class="education-icon">
+                        👨‍🎓
+                    </div>
+
+                    <h2>
+                        Postgraduate (PG)
+                    </h2>
+
+                    <span class="education-range">
+                        M.Tech, M.Sc, MBA & more
+                    </span>
+
+                    <p>
+                        Advanced subjects &
+                        career-focused learning
+                    </p>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Selection Message -->
+            <p
+                id="educationMessage"
+                class="education-message"
+            >
+                Please select your education level
+            </p>
+
+
+            <!-- Actions -->
+            <div class="education-actions">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    onclick="window.location.href='index.html'"
+                >
+                    ← Back to Login
+                </button>
+
+                <button
+                    type="button"
+                    id="continueEducationBtn"
+                    class="continue-btn"
+                    disabled
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="education-footer">
+
+            <p>
+                SmartLearn AI • Learning Intelligence System
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
