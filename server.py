@@ -15,14 +15,22 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+if os.path.exists(os.path.join(BASE_DIR, "index.html")):
+    FRONTEND_DIR = BASE_DIR
+else:
+    FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
+
+
 @app.route("/")
 def home():
-    return send_from_directory("..", "index.html")
+    return send_from_directory(FRONTEND_DIR, "index.html")
 
 
 @app.route("/<path:filename>")
 def serve_file(filename):
-    return send_from_directory("..", filename)
+    return send_from_directory(FRONTEND_DIR, filename)
 API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
 
