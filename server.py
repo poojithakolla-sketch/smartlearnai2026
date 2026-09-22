@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 from google import genai
@@ -13,6 +13,10 @@ import re
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
+@app.route("/")
+def home():
+    return send_from_directory(".", "index.html")
 
 API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
