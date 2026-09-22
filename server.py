@@ -17,12 +17,12 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return send_from_directory(".", "index.html")
+    return send_from_directory("..", "index.html")
+
 
 @app.route("/<path:filename>")
 def serve_file(filename):
-    return send_from_directory(".", filename)
-
+    return send_from_directory("..", filename)
 API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
 
