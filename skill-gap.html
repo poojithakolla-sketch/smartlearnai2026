@@ -1082,49 +1082,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const requiredSkills =
-                    Array.isArray(
-                        analysis.required_skills
-                    )
-                    ? analysis.required_skills
-                    : [];
+    Array.isArray(analysis.required_skills)
+        ? analysis.required_skills
+        : (
+            Array.isArray(analysis.priority_skills)
+                ? analysis.priority_skills
+                : []
+        );
 
+const existingSkills =
+    Array.isArray(analysis.existing_skills)
+        ? analysis.existing_skills
+        : (
+            Array.isArray(analysis.strengths)
+                ? analysis.strengths
+                : []
+        );
 
-                const existingSkills =
-                    Array.isArray(
-                        analysis.existing_skills
-                    )
-                    ? analysis.existing_skills
-                    : [];
+const improveSkills =
+    Array.isArray(analysis.skills_to_improve)
+        ? analysis.skills_to_improve
+        : (
+            Array.isArray(analysis.skill_gaps)
+                ? analysis.skill_gaps
+                : []
+        );
 
+const missingSkills =
+    Array.isArray(analysis.missing_skills)
+        ? analysis.missing_skills
+        : (
+            Array.isArray(analysis.skill_gaps)
+                ? analysis.skill_gaps
+                : (
+                    Array.isArray(analysis.priority_skills)
+                        ? analysis.priority_skills
+                        : []
+                )
+        );
 
-                const improveSkills =
-                    Array.isArray(
-                        analysis.skills_to_improve
-                    )
-                    ? analysis.skills_to_improve
-                    : [];
+const learningOrder =
+    Array.isArray(analysis.learning_order)
+        ? analysis.learning_order
+        : (
+            Array.isArray(analysis.estimated_learning_path)
+                ? analysis.estimated_learning_path
+                : []
+        );
 
-
-                const missingSkills =
-                    Array.isArray(
-                        analysis.missing_skills
-                    )
-                    ? analysis.missing_skills
-                    : [];
-
-
-                const learningOrder =
-                    Array.isArray(
-                        analysis.learning_order
-                    )
-                    ? analysis.learning_order
-                    : [];
-
-
-                const nextAction =
-                    analysis.next_action ||
-                    "Start learning the first skill in your recommended learning order.";
-
+const nextAction =
+    analysis.next_action ||
+    analysis.next_best_action ||
+    "Start learning the first skill in your recommended learning order.";
 
                 /* =====================================
                    DISPLAY RESULTS
